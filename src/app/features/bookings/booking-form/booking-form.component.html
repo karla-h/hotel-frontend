@@ -1,0 +1,93 @@
+<app-popup/>
+<app-room-selector [date]="fechaEntrada.value" (roomSelected)="addRoom($event)"></app-room-selector>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-white text-center" style="background-color: #3c5087;">
+      <h3>{{ isEditMode ? 'Editar Reserva' : 'Agregar Nueva Reserva' }}</h3>
+      <p class="mb-0">Completa los datos de la reserva en el formulario a continuación</p>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+
+        <!-- Fecha Entrada -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="fechaEntrada" class="form-label">Fecha Entrada</label>
+            <input type="date" id="fechaEntrada" class="form-control" formControlName="fechaEntrada"
+              [ngClass]="{'is-invalid': fechaEntrada.invalid && (fechaEntrada.dirty || fechaEntrada.touched)}"
+              required />
+            <div *ngIf="fechaEntrada.invalid && (fechaEntrada.dirty || fechaEntrada.touched)" class="invalid-feedback">
+              <div *ngIf="fechaEntrada.errors?.['required']">La fecha de entrada es obligatoria.</div>
+            </div>
+          </div>
+
+          <!-- Fecha Salida -->
+          <div class="col-md-6 mb-3">
+            <label for="fechaSalida" class="form-label">Fecha Salida</label>
+            <input type="date" id="fechaSalida" class="form-control" formControlName="fechaSalida"
+              [ngClass]="{'is-invalid': fechaSalida.invalid && (fechaSalida.dirty || fechaSalida.touched)}" required />
+            <div *ngIf="fechaSalida.invalid && (fechaSalida.dirty || fechaSalida.touched)" class="invalid-feedback">
+              <div *ngIf="fechaSalida.errors?.['required']">La fecha de salida es obligatoria.</div>
+              <div *ngIf="fechaSalida.errors?.['fechaInvalida']">La fecha de salida no puede ser menor o igual a la fecha de entrada.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DNI Huésped -->
+        <div class="mb-3">
+          <label for="dniHuesped" class="form-label">DNI Huésped</label>
+          <div class="d-flex">
+            <input type="text" id="dniHuesped" class="form-control me-2" formControlName="dniHuesped"
+              [ngClass]="{'is-invalid': dniHuesped.invalid && (dniHuesped.dirty || dniHuesped.touched)}" required />
+            <button type="button" class="btn btn-secondary" (click)="searchGuest()">Buscar</button>
+          </div>
+          <div *ngIf="dniHuesped.invalid && (dniHuesped.dirty || dniHuesped.touched)" class="invalid-feedback">
+            <div *ngIf="dniHuesped.errors?.['required']">El DNI es obligatorio.</div>
+          </div>
+        </div>
+
+        <!-- Nombre Huésped -->
+        <div class="mb-3">
+          <label for="nombreHuesped" class="form-label">Nombre Huésped</label>
+          <input type="text" id="nombreHuesped" class="form-control" [value]="guestName" [readonly]="isGuestFound" />
+        </div>
+
+        <!-- Habitaciones -->
+        <div class="mb-3">
+          <label for="habitaciones" class="form-label">Habitaciones</label>
+          <div class="d-flex">
+            <input type="text" id="habitaciones" class="form-control me-2" [value]="codes.join(', ')" readonly />
+            <button type="button" class="btn btn-secondary" (click)="openRoomSelector()">Seleccionar</button>
+          </div>
+        </div>
+
+        <!-- Método de Pago -->
+        <div class="mb-3">
+          <label for="pago" class="form-label">Método de Pago</label>
+          <select id="pago" class="form-control" formControlName="pago"
+            [ngClass]="{'is-invalid': pago.invalid && (pago.dirty || pago.touched)}" required>
+            <option value="Yape">Yape</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Efectivo">Efectivo</option>
+          </select>
+          <div *ngIf="pago.invalid && (pago.dirty || pago.touched)" class="invalid-feedback">
+            <div *ngIf="pago.errors?.['required']">El método de pago es obligatorio.</div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between mt-4">
+          <!-- Botón Cancelar -->
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancelar
+          </button>
+          <!-- Botón Guardar -->
+          <button type="submit" class="btn text-white" [disabled]="!bookingForm.valid"
+            style="background-color: #3c5087;">
+            {{ isEditMode ? 'Actualizar Reserva' : 'Agregar Reserva' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

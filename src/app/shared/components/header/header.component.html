@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand px-3 border-bottom">
+    <!-- Button for sidebar toggle -->
+    <button class="btn" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Inicio</a>
+        </li>
+        <!-- Notifications link -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                Notificaciones <span class="badge bg-danger">3</span>
+            </a>
+        </li>
+        <!-- User menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- User icon -->
+                <i class="bi bi-person-circle"></i> {{nombre}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="navbarDropdownUser">
+                <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</nav>
+<script>
+    const toggler = document.querySelector(".btn");
+    toggler.addEventListener("click",function(){
+      document.querySelector("#sidebar").classList.toggle("collapsed");
+    });
+  </script>

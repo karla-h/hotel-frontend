@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <h2>Lista de Reservas</h2>
+  <div class="mb-3 d-flex justify-content-between align-items-center">
+    <!-- Botón de nuevo registro -->
+    <button routerLink="form" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-2"></i>Nuevo Registro
+    </button>
+
+    <form [formGroup]="bookingForm" class="d-flex align-items-center">
+      <!-- Selector de fecha en línea -->
+      <div class="d-flex align-items-center me-3">
+        <label for="fechaReserva" class="form-label mb-0 me-2">Seleccionar fecha</label>
+        <input type="date" formControlName="fechaReserva" class="form-control" (change)="onDateChange()" id="fechaReserva" aria-label="Seleccionar fecha" />
+      </div>
+
+      <!-- Campo de búsqueda en línea -->
+      <div class="input-group w-auto">
+        <input type="text" class="form-control" formControlName="dniHuesped" placeholder="Buscar reservas..." aria-label="Buscar reservas">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Fecha Entrada</th>
+        <th>Fecha Salida</th>
+        <th>DNI Huésped</th>
+        <th>Usuario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Condicional de si existen reservas -->
+      @if (bookings && bookings.length > 0) {
+        @for (booking of bookings; track $index) {
+          <tr>
+            <td>{{ booking.codigo }}</td>
+            <td>{{ booking.fechaEntrada }}</td>
+            <td>{{ booking.fechaSalida }}</td>
+            <td>{{ booking.dniHuesped }}</td>
+            <td>{{ booking.usuario }}</td>
+            <td>
+              <button title="Ver" class="btn btn-info me-2" (click)="confirmarBooking(booking.codigo)">
+                <i class="bi bi-eye-fill fs-5"></i>
+              </button>
+              <button title="Editar" class="btn btn-warning me-2" (click)="updateBooking(booking.codigo)">
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+              <button title="Cancelar" (click)="cancelarBooking(booking.codigo)" class="btn btn-danger">
+                <i class="bi bi-file-earmark-x fs-5"></i>
+              </button>
+            </td>
+          </tr>
+        }
+      } @else {
+        <tr>
+          <td colspan="6">No hay elementos</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

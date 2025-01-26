@@ -1,0 +1,91 @@
+/* Sidebar Styles */
+#sidebar {
+    max-width: 264px;
+    min-width: 264px;
+    height: 100%;
+    background-color: #3c5087;
+    transition: all 0.35s ease-in-out;
+    box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
+    z-index: 1111;
+    padding: 0.75rem; /* Reducción del padding */
+}
+
+/* Sidebar collapse */
+#sidebar.collapsed {
+    margin-left: -264px;
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+    padding: 1rem; /* Ajuste en el padding del logo */
+    text-align: center;
+    margin-bottom: 1rem; /* Menos separación inferior */
+}
+
+.sidebar-logo a {
+    color: #00ff26;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: block;
+}
+
+.sidebar-logo img {
+    width: 90px; /* Ajuste en el tamaño del logo */
+    height: auto;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    padding: 0;
+    margin-top: 0.75rem; /* Reducción de la separación superior */
+}
+
+.sidebar-header {
+    color: #ffffff;
+    font-size: .75rem;
+    padding: 1.25rem 0.5rem .375rem; /* Moderado padding lateral */
+    margin-bottom: 1rem; /* Separación inferior */
+}
+
+.sidebar-item {
+    margin-bottom: 0.75rem; /* Menos separación entre los ítems del menú */
+}
+
+a.sidebar-link {
+    padding: .625rem 1.5rem; /* Reducción del padding lateral */
+    color: #ffffff;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: #2c3e50; /* Color oscuro para hover */
+}
+
+.sidebar-link i {
+    font-size: 1.3rem;
+    margin-right: 1rem;
+}
+
+/* Icon Rotation for Collapsible Links */
+.sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}

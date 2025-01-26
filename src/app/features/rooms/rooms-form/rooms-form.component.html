@@ -1,0 +1,118 @@
+<app-popup/>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-white text-center" style="background-color: #3c5087;">
+      <h3>{{ isEditMode ? 'Editar Habitación' : 'Agregar Nueva Habitación' }}</h3>
+      <p class="mb-0">Completa los datos de la habitación en el formulario a continuación</p>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Código -->
+        <div class="mb-3">
+          <label for="codigo" class="form-label">Código</label>
+          <input
+            formControlName="codigo"
+            type="text"
+            id="codigo"
+            class="form-control"
+            [ngClass]="{'is-invalid': codigo.invalid && (codigo.dirty || codigo.touched)}"
+          />
+          <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="invalid-feedback">
+            <div *ngIf="codigo.errors?.['required']">El código es obligatorio.</div>
+            <div *ngIf="codigo.errors?.['minlength']">El código debe tener al menos 3 caracteres.</div>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <input
+            formControlName="descripcion"
+            type="text"
+            id="descripcion"
+            class="form-control"
+            [ngClass]="{'is-invalid': descripcion.invalid && (descripcion.dirty || descripcion.touched)}"
+          />
+          <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="invalid-feedback">
+            <div *ngIf="descripcion.errors?.['required']">La descripción es obligatoria.</div>
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <input
+            formControlName="estado"
+            type="text"
+            id="estado"
+            class="form-control"
+            [ngClass]="{'is-invalid': estado.invalid && (estado.dirty || estado.touched)}"
+          />
+          <div *ngIf="estado.invalid && (estado.dirty || estado.touched)" class="invalid-feedback">
+            <div *ngIf="estado.errors?.['required']">El estado es obligatorio.</div>
+          </div>
+        </div>
+
+        <!-- Capacidad -->
+        <div class="mb-3">
+          <label for="capacidad" class="form-label">Capacidad</label>
+          <input
+            formControlName="capacidad"
+            type="number"
+            id="capacidad"
+            class="form-control"
+            [ngClass]="{'is-invalid': capacidad.invalid && (capacidad.dirty || capacidad.touched)}"
+          />
+          <div *ngIf="capacidad.invalid && (capacidad.dirty || capacidad.touched)" class="invalid-feedback">
+            <div *ngIf="capacidad.errors?.['required']">La capacidad es obligatoria.</div>
+            <div *ngIf="capacidad.errors?.['min']">La capacidad debe ser mayor que 0.</div>
+          </div>
+        </div>
+
+        <!-- Tipo de Habitación -->
+        <div class="mb-3">
+          <label for="tipoHabitacion" class="form-label">Tipo de Habitación</label>
+          <input
+            formControlName="tipoHabitacion"
+            type="text"
+            id="tipoHabitacion"
+            class="form-control"
+            [ngClass]="{'is-invalid': tipoHabitacion.invalid && (tipoHabitacion.dirty || tipoHabitacion.touched)}"
+          />
+          <div *ngIf="tipoHabitacion.invalid && (tipoHabitacion.dirty || tipoHabitacion.touched)" class="invalid-feedback">
+            <div *ngIf="tipoHabitacion.errors?.['required']">El tipo de habitación es obligatorio.</div>
+          </div>
+        </div>
+
+        <!-- Precio -->
+        <div class="mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <input
+            formControlName="precio"
+            type="number"
+            id="precio"
+            class="form-control"
+            [ngClass]="{'is-invalid': precio.invalid && (precio.dirty || precio.touched)}"
+          />
+          <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="invalid-feedback">
+            <div *ngIf="precio.errors?.['required']">El precio es obligatorio.</div>
+            <div *ngIf="precio.errors?.['min']">El precio debe ser mayor que 0.</div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between mt-4">
+          <!-- Botón Cancelar -->
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancelar
+          </button>
+          <!-- Botón Guardar -->
+          <button type="submit" class="btn text-white" [disabled]="!roomForm.valid" style="background-color: #3c5087;">
+            {{ isEditMode ? 'Actualizar Habitación' : 'Agregar Habitación' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

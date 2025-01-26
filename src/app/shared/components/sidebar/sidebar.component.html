@@ -1,0 +1,59 @@
+<aside id="sidebar">
+    <div class="h-100">
+        <div class="sidebar-logo">
+            <a href="">Van Gogh
+                <img src="/src/assets/logo-v.png" class="logo-img">
+            </a>
+        </div>
+        <!-- Sidebar Navigation -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                Tools & Components
+            </li>
+            
+            <!-- Menu items with icons -->
+            <li class="sidebar-item">
+                <a routerLink="/bookings" routerLinkActive="active" class="sidebar-link">
+                    <i class="fa-solid fa-book pe-2"></i> <!-- Icon for 'Reservas' -->
+                    Reservas
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/rooms" routerLinkActive="active" class="sidebar-link">
+                    <i class="fa-solid fa-bed pe-2"></i> <!-- Icon for 'Habitaciones' -->
+                    Habitaciones
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/customers" routerLinkActive="active" class="sidebar-link">
+                    <i class="fa-solid fa-users pe-2"></i> <!-- Icon for 'Huéspedes' -->
+                    Huéspedes
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/employees" routerLinkActive="active" class="sidebar-link">
+                    <i class="fa-solid fa-chalkboard-teacher pe-2"></i> <!-- Icon for 'Empleados' -->
+                    Empleados
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-user pe-2"></i> <!-- Icon for 'Profile' -->
+                    Perfil
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Toggle Sidebar Button -->
+<button class="btn" type="button">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<script>
+    const toggler = document.querySelector(".btn");
+    toggler.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("collapsed");
+    });
+</script>

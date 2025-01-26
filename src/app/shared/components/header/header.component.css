@@ -1,0 +1,11 @@
+.navbar-toggler {
+    border-color: transparent; /* Asegúrate de que el borde no afecte */
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    display: block;
+    background-color: #3c5087;
+    margin: 3px auto; 
+}

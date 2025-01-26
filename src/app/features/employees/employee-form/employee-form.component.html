@@ -1,0 +1,89 @@
+<app-popup/>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-white text-center" style="background-color: #3c5087;">
+      <h3>{{ isEditMode ? 'Editar Empleado' : 'Registrar Nuevo Empleado' }}</h3>
+      <p class="mb-0">Completa los datos del empleado en el formulario a continuación</p>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        
+        <!-- DNI -->
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input
+            formControlName="dni"
+            type="text"
+            id="dni"
+            class="form-control"
+            [readonly]="isDniReadOnly"
+            [ngClass]="{'is-invalid': dni.invalid && (dni.dirty || dni.touched)}"
+          />
+          <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="invalid-feedback">
+            <div *ngIf="dni.errors?.['required']">El DNI es obligatorio.</div>
+            <div *ngIf="dni.errors?.['minlength']">El DNI debe tener al menos 8 caracteres.</div>
+          </div>
+        </div>
+
+        <!-- Nombres -->
+        <div class="mb-3">
+          <label for="nombres" class="form-label">Nombres</label>
+          <input
+            formControlName="nombres"
+            type="text"
+            id="nombres"
+            class="form-control"
+            [ngClass]="{'is-invalid': nombres.invalid && (nombres.dirty || nombres.touched)}"
+          />
+          <div *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)" class="invalid-feedback">
+            <div *ngIf="nombres.errors?.['required']">Los nombres son obligatorios.</div>
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input
+            formControlName="telefono"
+            type="text"
+            id="telefono"
+            class="form-control"
+            [ngClass]="{'is-invalid': telefono.invalid && (telefono.dirty || telefono.touched)}"
+          />
+          <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="invalid-feedback">
+            <div *ngIf="telefono.errors?.['required']">El teléfono es obligatorio.</div>
+            <div *ngIf="telefono.errors?.['pattern']">Debe ingresar un número de teléfono válido (9 dígitos).</div>
+          </div>
+        </div>
+
+        <!-- Correo -->
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input
+            formControlName="correo"
+            type="email"
+            id="correo"
+            class="form-control"
+            [ngClass]="{'is-invalid': correo.invalid && (correo.dirty || correo.touched)}"
+          />
+          <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="invalid-feedback">
+            <div *ngIf="correo.errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="correo.errors?.['email']">Debe ingresar un correo válido.</div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between mt-4">
+          <!-- Botón Cancelar -->
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancelar
+          </button>
+          <!-- Botón Guardar -->
+          <button type="submit" class="btn text-white" [disabled]="!employeeForm.valid || loading" style="background-color: #3c5087;">
+            {{ isEditMode ? 'Actualizar Empleado' : 'Registrar Empleado' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
