@@ -1,27 +1,24 @@
-# HotelApp
+# Sistema Web de Gestión de Reservas - Hotel VanGogh
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+Este es un sistema web de gestión de reservas desarrollado para el Hotel VanGogh. El panel administrativo fue desarrollado con Spring Boot y Angular, con el objetivo de optimizar la gestión de reservas. Este proyecto permitió reducir el tiempo de registro de reservas y minimizar errores en la disponibilidad de habitaciones, mejorando la eficiencia operativa del hotel.
 
-## Development server
+![Hotel VanGogh](LoginReservas.jpg)
+![Hotel VanGogh](ReservasHotel.jpg)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Enlaces Útiles
 
-## Code scaffolding
+- [Link de Repositorio de Backend](https://github.com/karla-h/hotel-backend)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Tecnologías Utilizadas
+- **Lenguaje de Programación**: Java (Spring Boot) y TypeScript (Angular)
+- **Frameworks**: Spring Boot para el backend, Angular para el frontend
+- **Gestor de Base de Datos**: PostgreSQL
+- **Entorno de Desarrollo**: IntelliJ IDEA (para Spring Boot) y Visual Studio Code (para Angular)
+- **Otros**: Maven (para la gestión de dependencias de Spring Boot), Node.js (para Angular)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Requisitos
+- Java Development Kit (JDK) versión 11 o superior
+- Node.js y npm (para el desarrollo del frontend)
+- PostgreSQL como gestor de base de datos
+- Visual Studio Code o cualquier editor compatible con Angular y Spring Boot
